@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "759144810017",
+    "firebase_url": "https://eyelash-db37c.firebaseio.com",
+    "project_id": "eyelash-db37c",
+    "storage_bucket": "eyelash-db37c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759144810017:android:e53c78c524de8ff1870560",
+        "android_client_info": {
+          "package_name": "com.demo.eyelash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759144810017-0tv24i5uffthg2m5k7sl6gu466d7ffdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.demo.eyelash",
+            "certificate_hash": "a1bc3da4800d8c53ee008ec98c0f0e57e0f3c9d3"
+          }
+        },
+        {
+          "client_id": "759144810017-ga8c3erilqen4iv7dt43hfj51j9ccs4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOd0ATFglPY5-aLIl7x2XxB3AG9g6H3lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759144810017-ga8c3erilqen4iv7dt43hfj51j9ccs4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
