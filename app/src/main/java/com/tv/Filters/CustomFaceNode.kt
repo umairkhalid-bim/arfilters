@@ -4,13 +4,15 @@ import android.content.Context
 import android.util.Log
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Vector3
+
 var printLog = false
 
-class CustomFaceNode(augmentedFace: AugmentedFace?,
+class CustomFaceNode(val face: AugmentedFace?,
                  val context: Context,
                      val onMouth : (open : Boolean) -> Unit
-): AugmentedFaceNode(augmentedFace) {
+): Node() {
 //
 //    private var eyeNodeLeft: Node? = null
 //    private var eyeNodeRight: Node? = null
@@ -83,7 +85,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
     }
 
     private fun getRegionPose(region: FaceRegion) : Vector3? {
-        val buffer = augmentedFace?.meshVertices
+        val buffer = face?.meshVertices
         if (buffer != null) {
             return when (region) {
                 FaceRegion.LEFT_EYE ->
@@ -114,7 +116,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
     override fun onUpdate(frameTime: FrameTime?) {
         super.onUpdate(frameTime)
 
-        augmentedFace?.let {face ->
+        face?.let {face ->
 
 
             getRegionPose(FaceRegion.UP_LIP)?.let { top ->

@@ -3,19 +3,16 @@ package com.tv.Filters
 
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.Sceneform
 import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.Renderable
-import com.google.ar.sceneform.rendering.RenderableInstance
 import com.google.ar.sceneform.ux.ArFragment
-import com.google.ar.sceneform.ux.ArFragment.OnTapModelListener
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
+import java.lang.ref.WeakReference
 
 
 class MainActivity : AppCompatActivity() {
@@ -128,7 +125,43 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun buildModel(it: File) {
+    private fun playMouthOpen(it: Boolean) {
 
+    }
+
+    private fun buildModel(it: File) {
+        val weakActivity = WeakReference(this)
+        ModelRenderable.builder()
+            .setSource(
+                this,
+                Uri.fromFile(it)
+//                Uri.parse("https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/model.glb")
+            )
+            .setIsFilamentGltf(true)
+            .setAsyncLoadEnabled(true)
+            .build()
+            .thenAccept { model: ModelRenderable ->
+                val activity = weakActivity.get()
+                if (activity != null) {
+                    activity.faceRegionsRenderable = model
+                }
+            }
+            .exceptionally { throwable: Throwable? ->
+                Toast.makeText(this, "Unable to load model", Toast.LENGTH_LONG).show()
+                null
+            }
+//        ViewRenderable.builder()
+//            .setView(this, R.layout.view_tiger_card)
+//            .build()
+//            .thenAccept(Consumer { viewRenderable: ViewRenderable ->
+//                val activity = weakActivity.get()
+//                if (activity != null) {
+//                    activity.viewRenderable = viewRenderable
+//                }
+//            })
+//            .exceptionally(Function<Throwable, Void?> { throwable: Throwable? ->
+//                Toast.makeText(this, "Unable to load model", Toast.LENGTH_LONG).show()
+//                null
+//            })
     }
 }
